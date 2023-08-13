@@ -1,0 +1,33 @@
+{
+  "name": "ByteBlog",
+  "short_name": "BYBLG",
+  "theme_color": "#ffffff",
+  "background_color": "#faf9f4",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "http://localhost:3000",
+  "icons": [
+    {
+      "src": "maskable_icon.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.ico",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "favicon.ico",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
