@@ -37,7 +37,7 @@ function RegisterPage() {
     setError("");
 
     try {
-      const response = await fetch("https://byteblog-j4gb.onrender.com/register", {
+      const response = await fetch("https://byteblogg.onrender.com/register", {
         method: "POST",
         body: JSON.stringify({ username, password }),
         headers: { "Content-Type": "application/json" },

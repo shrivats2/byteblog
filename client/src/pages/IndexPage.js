@@ -7,7 +7,7 @@ export default function IndexPage({ userId, isProfile = false }) {
   const [filteredPosts, setFilteredPosts] = useState([]);
   const category = useSelector((state) => state.category.value);
   useEffect(() => {
-    fetch("https://byteblog-j4gb.onrender.com/post")
+    fetch("https://byteblogg.onrender.com/post")
       .then((response) => response.json())
       .then((posts) => {
         if (isProfile) {

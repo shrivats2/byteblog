@@ -30,7 +30,7 @@ export default function CreatePost() {
     }
 
     setLoading(true);
-    const response = await fetch("https://byteblog-j4gb.onrender.com/post", {
+    const response = await fetch("https://byteblogg.onrender.com/post", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,

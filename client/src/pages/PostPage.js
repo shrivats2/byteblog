@@ -16,7 +16,7 @@ export default function PostPage() {
 
   useEffect(() => {
     // Fetch post data
-    fetch(`https://byteblog-j4gb.onrender.com/post/${id}`)
+    fetch(`https://byteblogg.onrender.com/post/${id}`)
       .then((response) => response.json())
       .then((postInfo) => {
         setPostInfo(postInfo);
@@ -32,7 +32,7 @@ export default function PostPage() {
     // Update view count
     const updateViewCount = async () => {
       try {
-        await fetch(`https://byteblog-j4gb.onrender.com/post/${id}/viewcount`, {
+        await fetch(`https://byteblogg.onrender.com/post/${id}/viewcount`, {
           method: "PATCH",
         });
       } catch (error) {
@@ -47,7 +47,7 @@ export default function PostPage() {
     const fetchfollowing = async () => {
       try {
         const response = await fetch(
-          `https://byteblog-j4gb.onrender.com/user/${userInfo.id}/following`,
+          `https://byteblogg.onrender.com/user/${userInfo.id}/following`,
           {
             method: "GET",
           }
@@ -70,7 +70,7 @@ export default function PostPage() {
     try {
       // Patch follower data
       const response = await fetch(
-        `https://byteblog-j4gb.onrender.com/user/${userInfo.id}/${postInfo?.author?._id}`,
+        `https://byteblogg.onrender.com/user/${userInfo.id}/${postInfo?.author?._id}`,
         {
           method: "PATCH",
         }
@@ -84,7 +84,7 @@ export default function PostPage() {
   };
 
   const patchLike = async () => {
-    const response = await fetch(`https://byteblog-j4gb.onrender.com/post/${id}/like`, {
+    const response = await fetch(`https://byteblogg.onrender.com/post/${id}/like`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -172,7 +172,7 @@ export default function PostPage() {
         </div>
       )}
       <div className="image">
-        <img src={`https://byteblog-j4gb.onrender.com/${postInfo.cover}`} alt="" />
+        <img src={`https://byteblogg.onrender.com/${postInfo.cover}`} alt="" />
       </div>
       <div
         className="content"

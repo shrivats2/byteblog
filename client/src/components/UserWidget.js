@@ -29,7 +29,7 @@ const UserWidget = ({ userId }) => {
   const main = "#C2C2C2";
 
   const getUser = async () => {
-    const response = await fetch(`https://byteblog-j4gb.onrender.com/user/${userId}`, {
+    const response = await fetch(`https://byteblogg.onrender.com/user/${userId}`, {
       method: "GET",
     });
     const data = await response.json();

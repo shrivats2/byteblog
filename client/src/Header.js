@@ -38,7 +38,7 @@ export default function Header() {
 
   useEffect(() => {
     if(isAuth){
-    fetch("https://byteblog-j4gb.onrender.com/profile", {
+    fetch("https://byteblogg.onrender.com/profile", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`, // Send the token as a header
       },
@@ -60,7 +60,7 @@ export default function Header() {
   }, [setUserInfo]);
 
   function logout() {
-    fetch("https://byteblog-j4gb.onrender.com/logout", {
+    fetch("https://byteblogg.onrender.com/logout", {
       method: "POST",
       headers: {
         Authorization: localStorage.getItem("token"), // Send the token as a header

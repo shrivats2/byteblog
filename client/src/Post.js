@@ -31,7 +31,7 @@ export default function Post({
   const navigate = useNavigate();
 
   const patchLike = async () => {
-    const response = await fetch(`https://byteblog-j4gb.onrender.com/post/${_id}/like`, {
+    const response = await fetch(`https://byteblogg.onrender.com/post/${_id}/like`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -67,7 +67,7 @@ export default function Post({
           <Link to={`/post/${_id}`}>
             <img
               style={{ borderRadius: "0px", height: "100%" }}
-              src={"https://byteblog-j4gb.onrender.com/" + cover}
+              src={"https://byteblogg.onrender.com/" + cover}
               alt=""
             />
           </Link>

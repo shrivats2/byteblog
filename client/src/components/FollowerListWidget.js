@@ -23,7 +23,7 @@ const FollowerListWidget = ({ userId }) => {
   const currentUserId = localStorage.getItem("id");
 
   const getFollowing = async () => {
-    const response = await fetch(`https://byteblog-j4gb.onrender.com/${userId}/following`, {
+    const response = await fetch(`https://byteblogg.onrender.com/${userId}/following`, {
       method: "GET",
     });
     const data = await response.json();
@@ -38,7 +38,7 @@ const FollowerListWidget = ({ userId }) => {
     try {
       // Patch follower data
       const response = await fetch(
-        `https://byteblog-j4gb.onrender.com/user/${userId}/${_id}`,
+        `https://byteblogg.onrender.com/user/${userId}/${_id}`,
         {
           method: "PATCH",
         }
