@@ -22,7 +22,7 @@ export default function Layout() {
   return (
     <Box>
       <Header />
-      <Box display={isNonMobileScreens ? "flex" : "block"}>
+      <Box sx={{paddingBottom:"20px"}} display={isNonMobileScreens ? "flex" : "block"}>
         <Box
           padding="20px 0px 0px 15px"
           display={!isNonMobileScreens && "flex"}
@@ -45,6 +45,7 @@ export default function Layout() {
                   : "100%"
                 : "95%"
             }
+            sx={{display:"flex",flexDirection:"column",gap:"30px"}}
           >
             <Outlet />
           </Box>

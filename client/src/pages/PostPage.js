@@ -15,7 +15,6 @@ export default function PostPage() {
   const userid = localStorage.getItem("id");
 
   useEffect(() => {
-    // Fetch post data
     fetch(`https://byteblogg.onrender.com/post/${id}`)
       .then((response) => response.json())
       .then((postInfo) => {
@@ -29,7 +28,6 @@ export default function PostPage() {
   }, [id]);
 
   useEffect(() => {
-    // Update view count
     const updateViewCount = async () => {
       try {
         await fetch(`https://byteblogg.onrender.com/post/${id}/viewcount`, {
@@ -60,7 +58,6 @@ export default function PostPage() {
       }
     };
 
-    // Make sure userInfo is available before calling fetchfollowing
     if (userInfo.id) {
       fetchfollowing();
     }
@@ -68,7 +65,6 @@ export default function PostPage() {
 
   const patchFollower = async () => {
     try {
-      // Patch follower data
       const response = await fetch(
         `https://byteblogg.onrender.com/user/${userInfo.id}/${postInfo?.author?._id}`,
         {
@@ -84,13 +80,16 @@ export default function PostPage() {
   };
 
   const patchLike = async () => {
-    const response = await fetch(`https://byteblogg.onrender.com/post/${id}/like`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId: userid }),
-    });
+    const response = await fetch(
+      `https://byteblogg.onrender.com/post/${id}/like`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: userid }),
+      }
+    );
     const updatedPost = await response.json();
 
     // Update the likes data in the UserContext

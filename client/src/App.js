@@ -12,6 +12,7 @@ import { CssBaseline } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import Profilepage from "./pages/profilepage";
 import { useEffect } from "react";
+import Footer from "./components/footer";
 
 function App() {
   const isAuth = localStorage.getItem("id");
@@ -30,6 +31,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile/:userId" element={<Profilepage />} />
         </Routes>
+        <Footer/>
       </UserContextProvider>
     </BrowserRouter>
   );
