@@ -53,7 +53,7 @@ Follow these steps to run ByteBlog locally on your machine.
    npm start
    ```
 
-   The backend server will be running at `http://localhost:3001`.
+   The backend server will be running at `http://localhost:4000`.
 
 5. Open a new terminal window and navigate to the `client` directory:
 
