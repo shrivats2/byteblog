@@ -1,7 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "./UserContext";
 import { styled } from "@mui/system";
+import Logout from "@mui/icons-material/Logout";
+import ListItemIcon from "@mui/material/ListItemIcon";
 import {
   Box,
   IconButton,
@@ -10,19 +12,10 @@ import {
   Select,
   MenuItem,
   FormControl,
-  useTheme,
   useMediaQuery,
+  Avatar,
 } from "@mui/material";
-import {
-  Search,
-  Message,
-  DarkMode,
-  LightMode,
-  Notifications,
-  Help,
-  Menu,
-  Close,
-} from "@mui/icons-material";
+import { Search, Menu, Close } from "@mui/icons-material";
 import CreateIcon from "@mui/icons-material/Create";
 import HomeIcon from "@mui/icons-material/Home";
 import Chip from "@mui/material/Chip";
@@ -37,25 +30,25 @@ export default function Header() {
   const isAuth = localStorage.getItem("id");
 
   useEffect(() => {
-    if(isAuth){
-    fetch("https://byteblogg.onrender.com/profile", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`, // Send the token as a header
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Unauthorized");
-        }
-        return response.json();
+    if (isAuth) {
+      fetch("https://byteblogg.onrender.com/profile", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Send the token as a header
+        },
       })
-      .then((userInfo) => {
-        setUserInfo(userInfo);
-      })
-      .catch((error) => {
-        console.error("Error fetching profile:", error);
-        setUserInfo(null); // Clear user info if unauthorized
-      });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Unauthorized");
+          }
+          return response.json();
+        })
+        .then((userInfo) => {
+          setUserInfo(userInfo);
+        })
+        .catch((error) => {
+          console.error("Error fetching profile:", error);
+          setUserInfo(null); // Clear user info if unauthorized
+        });
     }
   }, [setUserInfo]);
 
@@ -181,13 +174,25 @@ export default function Header() {
                 }}
                 input={<InputBase />}
               >
-                <MenuItem value={username}>
+                <MenuItem value={username} sx={{ display: "flex" }}>
+                  <ListItemIcon sx={{ minWidth: "auto" }}>
+                    <Avatar sx={{ width: 24, height: 24 }} />
+                  </ListItemIcon>
                   <Typography>{username}</Typography>
                 </MenuItem>
                 <MenuItem value="My Profile" onClick={handleprofile}>
-                  <Typography>My Profile</Typography>
+                  <ListItemIcon>
+                    <Avatar sx={{ width: 24, height: 24 }} />
+                  </ListItemIcon>
+                  Profile
                 </MenuItem>
-                <MenuItem onClick={logout}>Log Out</MenuItem>
+                <MenuItem sx={{ color: "red" }} onClick={logout}>
+                  {" "}
+                  <ListItemIcon>
+                    <Logout sx={{ color: "red" }} fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
               </Select>
             </FormControl>
           )}
@@ -278,12 +283,23 @@ export default function Header() {
                 input={<InputBase />}
               >
                 <MenuItem value={username}>
+                  <ListItemIcon sx={{ minWidth: "auto" }}>
+                    <Avatar sx={{ width: 24, height: 24 }} />
+                  </ListItemIcon>
                   <Typography>{username}</Typography>
                 </MenuItem>
                 <MenuItem value="My Profile" onClick={handleprofile}>
-                  <Typography>My Profile</Typography>
+                  <ListItemIcon>
+                    <Avatar sx={{ width: 24, height: 24 }} />
+                  </ListItemIcon>
+                  Profile
                 </MenuItem>
-                <MenuItem onClick={logout}>Log Out</MenuItem>
+                <MenuItem sx={{ color: "red" }} onClick={logout}>
+                  <ListItemIcon>
+                    <Logout sx={{ color: "red" }} fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
               </Select>
             </FormControl>
           </FlexBetween>

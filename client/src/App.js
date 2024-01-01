@@ -31,7 +31,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile/:userId" element={<Profilepage />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </UserContextProvider>
     </BrowserRouter>
   );

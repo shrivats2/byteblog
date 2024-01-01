@@ -2,18 +2,10 @@ import React, { useState, useContext } from "react";
 import { formatISO9075 } from "date-fns";
 import { Link, useNavigate } from "react-router-dom";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { selectedCategory } from "./features/category";
 import Tooltip from "@mui/material/Tooltip";
 import { UserContext } from "./UserContext";
-import {
-  Chip,
-  Card,
-  CardContent,
-  CardActions,
-  Typography,
-} from "@mui/material";
+import { Chip } from "@mui/material";
 import { useDispatch } from "react-redux";
 
 export default function Post({
@@ -62,49 +54,28 @@ export default function Post({
   };
 
   return (
-    <Card>
-      <div
-        style={{ display: "flex", justifyContent: "center" }}
-        className="image"
-      >
-        <Link to={`/post/${_id}`}>
+    <div className="card">
+      <div className="card-img-holder">
+        <Link style={{ textDecoration: "none" }} to={`/post/${_id}`}>
           <img
-            style={{ borderRadius: "0px", height: "100%" }}
             src={"https://byteblogg.onrender.com/" + cover}
-            alt=""
+            alt="Blog-img"
           />
         </Link>
       </div>
-      <CardContent>
-        <Link to={`/post/${_id}`}>
-          <Typography sx={{ padding: "12px" }} variant="h6" component="div">
-            {title}
-          </Typography>
-        </Link>
-        <Chip
-          onClick={() => handleCategoryClick(category)}
-          style={{
-            marginBottom: "12px",
-            marginTop: "5px",
-            borderColor: "#ff00fc",
-            fontWeight: "700",
-          }}
-          label={category}
-          variant="outlined"
-        />
-        <Typography
-          sx={{
-            alignItems: "center",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "20px",
-          }}
-          className="info"
-        >
-          <a href="/#" className="author">
-            {author.username}
+      <Link style={{ textDecoration: "none" }} to={`/post/${_id}`}>
+        <h3 className="blog-title">{title}</h3>
+      </Link>
+      <div className="blog-time">
+        <div className="blog-card-section-1">
+          <a href={`/profile/${author._id}`} className="author">
+            @{author.username}
           </a>
-          <time>{formatISO9075(new Date(createdAt))}</time>
+          <time style={{ fontStyle: "italic", color: "grey" }}>
+            {formatISO9075(new Date(createdAt))}
+          </time>
+        </div>
+        <div className="blog-card-section-2">
           <VisibilityIcon /> {viewcount}
           <Tooltip title={isLiked ? "Unlike" : "Like"}>
             <div style={{ display: "flex", color: "#e0245e" }}>
@@ -127,9 +98,27 @@ export default function Post({
               </span>
             </div>
           </Tooltip>
-        </Typography>
-        <Typography className="summary">{summary}</Typography>
-      </CardContent>
-    </Card>
+        </div>
+      </div>
+      <p className="description">{summary}</p>
+      <div className="options">
+        <span>
+          <Chip
+            onClick={() => handleCategoryClick(category)}
+            style={{
+              marginBottom: "12px",
+              marginTop: "5px",
+              borderColor: "#ff00fc",
+              fontWeight: "700",
+            }}
+            label={category}
+            variant="outlined"
+          />
+        </span>
+        <Link style={{ textDecoration: "none" }} to={`/post/${_id}`}>
+          <button className="btn">Read Blog</button>
+        </Link>
+      </div>
+    </div>
   );
 }

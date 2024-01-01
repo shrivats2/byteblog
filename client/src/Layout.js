@@ -7,62 +7,42 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Layout() {
-  const location = useLocation();
   const userId = localStorage.getItem("id");
   const isNonMobileScreens = useMediaQuery("(min-width: 1200px)");
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  useEffect(()=>{
-    if(!userId)
-    {
+  useEffect(() => {
+    if (!userId) {
       navigate("/login");
+    } else {
+      navigate("/explore");
     }
-  },[userId])
-  
+  }, [userId]);
+
   return (
     <Box>
       <Header />
-      <Box sx={{paddingBottom:"20px"}} display={isNonMobileScreens ? "flex" : "block"}>
+      <Box
+        sx={{ paddingBottom: "20px" }}
+        display={isNonMobileScreens ? "flex" : "block"}
+      >
         <Box
           padding="20px 0px 0px 15px"
-          display={!isNonMobileScreens && "flex"}
+          display="flex"
           justifyContent={!isNonMobileScreens && "center"}
+          sx={{ flexDirection: "column", gap: "30px" }}
         >
           <Navbar />
+          {isNonMobileScreens && <FollowerListWidget userId={userId} />}
         </Box>
         <Box
           width="100%"
-          padding="1rem 0rem 0rem 1rem"
+          padding="10px"
           display="flex"
-          gap="0.5rem"
-          justifyContent="space-between"
+          gap="3rem"
+          sx={{ flexFlow: "wrap" }}
         >
-          <Box
-            flexBasis={
-              location.pathname === "/explore"
-                ? isNonMobileScreens
-                  ? "70%"
-                  : "100%"
-                : "95%"
-            }
-            sx={{display:"flex",flexDirection:"column",gap:"30px"}}
-          >
-            <Outlet />
-          </Box>
-          <Box
-            flexBasis={
-              location.pathname === "/explore" && isNonMobileScreens
-                ? "30%"
-                : "0%"
-            }
-          >
-            {location.pathname === "/explore" && isNonMobileScreens && (
-              <>
-                <Box m="2rem 0" />
-                <FollowerListWidget userId={userId} />
-              </>
-            )}
-          </Box>
+          <Outlet />
         </Box>
       </Box>
     </Box>

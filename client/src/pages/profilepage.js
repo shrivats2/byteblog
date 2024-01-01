@@ -15,7 +15,7 @@ const ProfilePage = () => {
       <Box
         width="100%"
         padding="2rem 6%"
-        display={isNonMobileScreens ? "flex" : "block"}
+        display={isNonMobileScreens ? "flex" :"block"}
         gap="2rem"
         justifyContent="center"
       >
@@ -25,10 +25,12 @@ const ProfilePage = () => {
           <FollowerListWidget userId={userId} />
         </Box>
         <Box
+          display="flex"
           flexBasis={isNonMobileScreens ? "72%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
+          sx={{flexFlow:"wrap"}}
+          gap="3rem"
         >
-          <Box m="2rem 0" />
           <IndexPage userId={userId} isProfile />
         </Box>
       </Box>
