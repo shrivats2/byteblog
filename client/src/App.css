@@ -586,10 +586,6 @@ input:checked+.hearth {
   box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
 
-.MuiSelect-select.MuiSelect-standard.MuiInputBase-input.css-194a1fa-MuiSelect-select-MuiInputBase-input {
-  display: flex;
-}
-
 
 
 .card {

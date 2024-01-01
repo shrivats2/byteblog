@@ -175,9 +175,6 @@ export default function Header() {
                 input={<InputBase />}
               >
                 <MenuItem value={username} sx={{ display: "flex" }}>
-                  <ListItemIcon sx={{ minWidth: "auto" }}>
-                    <Avatar sx={{ width: 24, height: 24 }} />
-                  </ListItemIcon>
                   <Typography>{username}</Typography>
                 </MenuItem>
                 <MenuItem value="My Profile" onClick={handleprofile}>
@@ -283,9 +280,6 @@ export default function Header() {
                 input={<InputBase />}
               >
                 <MenuItem value={username}>
-                  <ListItemIcon sx={{ minWidth: "auto" }}>
-                    <Avatar sx={{ width: 24, height: 24 }} />
-                  </ListItemIcon>
                   <Typography>{username}</Typography>
                 </MenuItem>
                 <MenuItem value="My Profile" onClick={handleprofile}>
