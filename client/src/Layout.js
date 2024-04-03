@@ -3,7 +3,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { Box, useMediaQuery } from "@mui/material";
 import FollowerListWidget from "./components/FollowerListWidget";
-import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function Layout() {
@@ -17,7 +16,7 @@ export default function Layout() {
     } else {
       navigate("/explore");
     }
-  }, [userId]);
+  }, [userId, navigate]);
 
   return (
     <Box>
@@ -30,7 +29,8 @@ export default function Layout() {
           padding="20px 0px 0px 15px"
           display="flex"
           justifyContent={!isNonMobileScreens && "center"}
-          sx={{ flexDirection: "column", gap: "30px" }}
+          flexDirection={isNonMobileScreens && "column"}
+          sx={{ gap: "30px" }}
         >
           <Navbar />
           {isNonMobileScreens && <FollowerListWidget userId={userId} />}
@@ -40,6 +40,7 @@ export default function Layout() {
           padding="10px"
           display="flex"
           gap="3rem"
+          justifyContent={!isNonMobileScreens && "center"}
           sx={{ flexFlow: "wrap" }}
         >
           <Outlet />

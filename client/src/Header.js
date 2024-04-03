@@ -47,22 +47,23 @@ export default function Header() {
         })
         .catch((error) => {
           console.error("Error fetching profile:", error);
-          setUserInfo(null); // Clear user info if unauthorized
+          setUserInfo(null);
         });
     }
-  }, [setUserInfo]);
+  }, [setUserInfo, isAuth]);
 
   function logout() {
+    setIsMobileMenuToggled(!isMobileMenuToggled);
     fetch("https://byteblogg.onrender.com/logout", {
       method: "POST",
       headers: {
-        Authorization: localStorage.getItem("token"), // Send the token as a header
+        Authorization: localStorage.getItem("token"),
       },
     })
       .then(() => {
         setUserInfo(null);
         localStorage.setItem("id", "");
-        localStorage.removeItem("token"); // Remove token from localStorage on logout
+        localStorage.removeItem("token");
         navigate("/login");
       })
       .catch((error) => {
@@ -78,6 +79,7 @@ export default function Header() {
     alignItems: "center",
   });
   const handleprofile = () => {
+    setIsMobileMenuToggled(!isMobileMenuToggled);
     navigate(`/profile/${userInfo?.id}`);
   };
 
@@ -237,10 +239,16 @@ export default function Header() {
                 <CreateIcon
                   sx={{ fontSize: "25px" }}
                   style={{ cursor: "pointer" }}
-                  onClick={() => navigate("/create")}
+                  onClick={() => {
+                    setIsMobileMenuToggled(!isMobileMenuToggled);
+                    navigate("/create");
+                  }}
                 />
               }
-              onClick={() => navigate("/create")}
+              onClick={() => {
+                setIsMobileMenuToggled(!isMobileMenuToggled);
+                navigate("/create");
+              }}
               label="&nbsp;Write&nbsp;"
               variant="outlined"
               style={{
@@ -253,6 +261,7 @@ export default function Header() {
             <Chip
               icon={<HomeIcon sx={{ fontSize: "25px", color: "white" }} />}
               onClick={() => {
+                setIsMobileMenuToggled(!isMobileMenuToggled);
                 isAuth ? navigate("/explore") : navigate("/");
               }}
               label="Home"

@@ -1,4 +1,3 @@
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
@@ -26,7 +25,7 @@ export default function CreatePost() {
 
     if (!content.trim()) {
       setError("Content is required.");
-      return; // Return early if content is empty
+      return;
     }
 
     setLoading(true);
@@ -49,7 +48,6 @@ export default function CreatePost() {
     return <Navigate to={"/explore"} />;
   }
 
-  
   const handleCloseSnackbar = () => {
     setError(null);
   };
@@ -80,21 +78,20 @@ export default function CreatePost() {
             onChange={(ev) => setFiles(ev.target.files)}
           />
           <Editor value={content} onChange={setContent} />
-
-          <button
-            className="publish-btn"
-            style={{
-              marginTop: "50px",
-              width: "20%",
-              marginLeft: "20px",
-              fontSize: "15px",
-              fontWeight: "700",
-            }}
-            disabled={loading}
-          >
-            {loading ? <CircularProgress size={24} /> : "Publish"}
-          </button>
         </form>
+        <button
+          className="publish-btn"
+          style={{
+            marginTop: "50px",
+            width: "20%",
+            marginLeft: "20px",
+            fontSize: "15px",
+            fontWeight: "700",
+          }}
+          disabled={loading}
+        >
+          {loading ? <CircularProgress size={24} /> : "Publish"}
+        </button>
       </div>
       <Snackbar
         open={!!error}

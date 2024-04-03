@@ -166,7 +166,7 @@ div.post-page div.author {
 
 @media screen and (max-width: 620px) {
   .publish-btn {
-    margin-top: 85px !important;
+    margin-top: 115px !important;
   }
 }
 
@@ -205,6 +205,13 @@ div.post-page a.edit-btn {
 
 a svg {
   height: 20px;
+}
+.css-ahj2mt-MuiTypography-root{
+display: flex !important;
+    justify-content: center !important;
+    font-weight: 700 !important;
+    text-transform: capitalize !important;
+    color: #000380 !important;
 }
 
 
@@ -589,8 +596,8 @@ input:checked+.hearth {
 
 
 .card {
-  width: 25rem;
-  height: auto;
+  width: 20rem;
+  height: max-content;
   background: #fff;
   border-radius: 1.5rem;
   padding: 1.5rem;
@@ -634,7 +641,7 @@ input:checked+.hearth {
 
 .blog-card-section-1 {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
 }
 

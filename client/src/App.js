@@ -1,5 +1,5 @@
 import "./App.css";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 import IndexPage from "./pages/IndexPage";
 import LoginPage from "./pages/LoginPage";
@@ -11,11 +11,9 @@ import EditPost from "./pages/EditPost";
 import { CssBaseline } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 import Profilepage from "./pages/profilepage";
-import { useEffect } from "react";
 import Footer from "./components/footer";
 
 function App() {
-  const isAuth = localStorage.getItem("id");
   return (
     <BrowserRouter>
       <UserContextProvider>

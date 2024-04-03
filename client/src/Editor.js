@@ -1,7 +1,9 @@
 import ReactQuill from "react-quill";
 import React from "react";
+import { useMediaQuery } from "@mui/material";
 
 export default function Editor({ value, onChange }) {
+  const isMobileScreens = useMediaQuery("(min-width: 400px)");
   const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
@@ -33,7 +35,7 @@ export default function Editor({ value, onChange }) {
 
   const editorStyle = {
     minWidth: "200px",
-    maxWidth: "100vw", 
+    maxWidth: "100vw",
     margin: "0 auto",
     height: "40vh",
   };
@@ -47,7 +49,7 @@ export default function Editor({ value, onChange }) {
           onChange={onChange}
           modules={modules}
           formats={formats}
-          style={{ width: "80vw", height: "100%" }}
+          style={{ width: !isMobileScreens ? "80vw" : "70vw", height: "100%" }}
         />
       </div>
     </div>

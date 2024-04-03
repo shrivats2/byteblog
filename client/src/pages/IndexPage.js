@@ -1,16 +1,17 @@
 import { useSelector } from "react-redux";
 import Post from "../Post";
 import { useEffect, useState } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
+import { Card, Skeleton, Typography } from "@mui/material";
 
 export default function IndexPage({ userId, isProfile = false }) {
   const [allPosts, setAllPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
-  const [loading, setLoading] = useState(true); // Added loading state
+  const [loading, setLoading] = useState(false);
+  const [filterPostloading, setfilterPostLoading] = useState(false);
   const category = useSelector((state) => state.category.value);
 
   useEffect(() => {
-    setLoading(true); // Set loading to true when starting to fetch posts
+    setLoading(true);
     fetch("https://byteblogg.onrender.com/post")
       .then((response) => response.json())
       .then((posts) => {
@@ -21,16 +22,16 @@ export default function IndexPage({ userId, isProfile = false }) {
           setFilteredPosts(posts);
           setAllPosts(posts);
         }
-        setLoading(false); // Set loading to false after fetching posts
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching posts:", error);
-        setLoading(false); // Set loading to false in case of an error
+        setLoading(false);
       });
   }, [isProfile, userId]);
 
   useEffect(() => {
-    setLoading(true); // Set loading to true when starting to filter posts
+    setfilterPostLoading(true);
     if (category === "explore") {
       setFilteredPosts(allPosts);
     } else {
@@ -57,13 +58,15 @@ export default function IndexPage({ userId, isProfile = false }) {
         setFilteredPosts(allPosts.filter((post) => post.category === category));
       }
     }
-    setLoading(false); // Set loading to false after filtering posts
+    setfilterPostLoading(false);
   }, [category, allPosts]);
 
   return (
     <>
       {loading ? (
-        <CircularProgress style={{ margin: "20px auto", display: "flex" }} />
+        <IndexPageSkeleton />
+      ) : filterPostloading ? (
+        <IndexPageSkeleton />
       ) : (
         filteredPosts.length > 0 &&
         filteredPosts.map((post, i) => <Post key={i} {...post} />)
@@ -71,3 +74,33 @@ export default function IndexPage({ userId, isProfile = false }) {
     </>
   );
 }
+
+const IndexPageSkeleton = () => {
+  return (
+    <>
+      {Array(4)
+        .fill()
+        .map((_, key) => (
+          <Card sx={{ height: "600px" }}>
+            <Skeleton
+              sx={{ borderRadius: "15px", margin: "20px" }}
+              width={310}
+              height={300}
+            />
+            {Array(4)
+              .fill()
+              .map((_, key) => (
+                <Typography
+                  sx={{ margin: "20px" }}
+                  component="div"
+                  key={key}
+                  variant="body1"
+                >
+                  <Skeleton />
+                </Typography>
+              ))}
+          </Card>
+        ))}
+    </>
+  );
+};
