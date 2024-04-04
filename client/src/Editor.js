@@ -37,7 +37,7 @@ export default function Editor({ value, onChange }) {
     minWidth: "200px",
     maxWidth: "100vw",
     margin: "0 auto",
-    height: "40vh",
+    height: "60vh",
   };
 
   return (

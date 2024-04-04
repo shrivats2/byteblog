@@ -13,7 +13,7 @@ export default function Layout() {
   useEffect(() => {
     if (!userId) {
       navigate("/login");
-    } else {
+    } else if (navigate.location?.pathname === "/") {
       navigate("/explore");
     }
   }, [userId, navigate]);

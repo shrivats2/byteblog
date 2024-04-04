@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Header from "../Header";
 import UserWidget from "../components/UserWidget";
 import FollowerListWidget from "../components/FollowerListWidget";
-import IndexPage from "./IndexPage";
+import ProfilePost from "./profileposts";
 
 const ProfilePage = () => {
   const { userId } = useParams();
@@ -15,7 +15,7 @@ const ProfilePage = () => {
       <Box
         width="100%"
         padding="2rem 6%"
-        display={isNonMobileScreens ? "flex" :"block"}
+        display={isNonMobileScreens ? "flex" : "block"}
         gap="2rem"
         justifyContent="center"
       >
@@ -28,10 +28,10 @@ const ProfilePage = () => {
           display="flex"
           flexBasis={isNonMobileScreens ? "72%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
-          sx={{flexFlow:"wrap"}}
+          sx={{ flexFlow: "wrap" }}
           gap="3rem"
         >
-          <IndexPage userId={userId} isProfile />
+          <ProfilePost userId={userId} />
         </Box>
       </Box>
     </Box>

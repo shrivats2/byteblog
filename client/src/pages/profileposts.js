@@ -3,7 +3,7 @@ import Post from "../Post";
 import { useEffect, useState } from "react";
 import { Card, Skeleton, Typography } from "@mui/material";
 
-export default function IndexPage({ userId, isProfile = false }) {
+export default function ProfilePost({ userId }) {
   const [allPosts, setAllPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -15,58 +15,21 @@ export default function IndexPage({ userId, isProfile = false }) {
     fetch("https://byteblogg.onrender.com/post")
       .then((response) => response.json())
       .then((posts) => {
-        if (isProfile) {
-          console.log(posts);
-          setAllPosts(posts.filter((post) => post.author._id === userId));
-          setFilteredPosts(posts.filter((post) => post.author._id === userId));
-        } else {
-          setFilteredPosts(posts);
-          setAllPosts(posts);
-        }
+        console.log(posts);
+        setAllPosts(posts.filter((post) => post.author._id === userId));
+        setFilteredPosts(posts.filter((post) => post.author._id === userId));
+        console.log(filteredPosts);
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching posts:", error);
         setLoading(false);
       });
-  }, [isProfile, userId]);
-
-  useEffect(() => {
-    setfilterPostLoading(true);
-    if (category === "explore") {
-      setFilteredPosts(allPosts);
-    } else {
-      if (category === "Others") {
-        setFilteredPosts(
-          allPosts.filter(
-            (post) =>
-              post.category !== "Science" &&
-              post.category !== "Culture" &&
-              post.category !== "Sports" &&
-              post.category !== "Business" &&
-              post.category !== "Politics" &&
-              post.category !== "Technology"
-          )
-        );
-      } else if (category === "Science") {
-        setFilteredPosts(
-          allPosts.filter(
-            (post) =>
-              post.category === "Science" || post.category === "Technology"
-          )
-        );
-      } else {
-        setFilteredPosts(allPosts.filter((post) => post.category === category));
-      }
-    }
-    setfilterPostLoading(false);
-  }, [category, allPosts]);
+  }, [userId]);
 
   return (
     <>
       {loading ? (
-        <IndexPageSkeleton />
-      ) : filterPostloading ? (
         <IndexPageSkeleton />
       ) : (
         filteredPosts.length > 0 &&

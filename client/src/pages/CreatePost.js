@@ -23,6 +23,21 @@ export default function CreatePost() {
     data.set("file", files[0]);
     ev.preventDefault();
 
+    if (title === "") {
+      setError("Title Required.");
+      return;
+    }
+
+    if (summary === "") {
+      setError("Summary Required.");
+      return;
+    }
+
+    if (!files[0]) {
+      setError("File Required.");
+      return;
+    }
+
     if (!content.trim()) {
       setError("Content is required.");
       return;
@@ -55,7 +70,14 @@ export default function CreatePost() {
   return (
     <>
       <div
-        style={{ background: "#fffcfc", borderRadius: "10px", height: "600px" }}
+        style={{
+          background: "#fffcfc",
+          borderRadius: "10px",
+          height: "auto",
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+        }}
       >
         <form onSubmit={createNewPost} style={{ padding: "20px" }}>
           <input
@@ -80,6 +102,7 @@ export default function CreatePost() {
           <Editor value={content} onChange={setContent} />
         </form>
         <button
+          onClick={createNewPost}
           className="publish-btn"
           style={{
             marginTop: "50px",
@@ -87,6 +110,7 @@ export default function CreatePost() {
             marginLeft: "20px",
             fontSize: "15px",
             fontWeight: "700",
+            marginBottom: "20px",
           }}
           disabled={loading}
         >
